@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Odoo Developer Tools</title>
+  <style>
+    body {
+      width: 300px;
+      margin: 0;
+      font-family: Arial, sans-serif;
+    }
+
+    h2 {
+      margin: 0;
+      padding: 15px 0;
+      color: #333;
+      text-align: center;
+      border-bottom: 1px solid #e0e0e0;
+      background-color: #f8f9fa;
+    }
+
+    .feature-toggle {
+      padding: 15px;
+      border-bottom: 1px solid #e0e0e0;
+    }
+
+    .toggle-container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 10px;
+    }
+
+    /* Keep your existing toggle styles */
+    .toggle-input {
+      height: 0;
+      width: 0;
+      visibility: hidden;
+    }
+
+    .toggle-label {
+      display: flex;
+      align-items: center;
+      cursor: pointer;
+      font-weight: 500;
+      color: #333;
+      user-select: none;
+    }
+
+    .toggle-label::before {
+      content: '';
+      width: 50px;
+      height: 30px;
+      background: #e9e9eb;
+      border-radius: 100px;
+      position: relative;
+      margin-left: 10px;
+      transition: 0.3s;
+    }
+
+    .toggle-label::after {
+      content: '';
+      width: 26px;
+      height: 26px;
+      background: #fff;
+      position: absolute;
+      border-radius: 50%;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+      transform: translateX(2px);
+      transition: 0.3s;
+    }
+
+    .toggle-input:checked + .toggle-label::before {
+      background: #34c759;
+    }
+
+    .toggle-input:checked + .toggle-label::after {
+      transform: translateX(42px);
+    }
+
+    .dev-mode-options {
+      margin-top: 10px;
+      padding: 10px;
+      background: #f5f5f5;
+      border-radius: 8px;
+      display: none;
+    }
+
+    #devMode:checked ~ .dev-mode-options {
+      display: block;
+    }
+
+    .radio-option {
+      margin: 8px 0;
+      display: flex;
+      align-items: center;
+    }
+
+    .radio-option input[type="radio"] {
+      margin-right: 8px;
+    }
+
+    .status-container {
+      display: flex;
+      align-items: center;
+      margin-top: 5px;
+      font-size: 12px;
+    }
+
+    .status-indicator {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      margin-right: 5px;
+    }
+
+    .status-active {
+      background-color: #34c759;
+    }
+
+    .status-inactive {
+      background-color: #ff3b30;
+    }
+
+    .status-text {
+      color: #666;
+    }
+  </style>
+</head>
+<body>
+  <h2>Odoo Developer Tools</h2>
+  
+  <div class="feature-toggle">
+    <div class="toggle-container">
+      <span>Show Field Hints</span>
+      <input type="checkbox" id="fieldHints" class="toggle-input">
+      <label for="fieldHints" class="toggle-label"></label>
+    </div>
+  </div>
+
+  <div class="feature-toggle">
+    <div class="toggle-container">
+      <span>Developer Mode</span>
+      <input type="checkbox" id="devMode" class="toggle-input">
+      <label for="devMode" class="toggle-label"></label>
+    </div>
+    <div class="status-container">
+      <span class="status-indicator"></span>
+      <span class="status-text"></span>
+    </div>
+    <div class="dev-mode-options">
+      <div class="radio-option">
+        <input type="radio" id="assets" name="debugMode" value="assets">
+        <label for="assets">With Assets</label>
+      </div>
+      <div class="radio-option">
+        <input type="radio" id="tests" name="debugMode" value="assets,tests">
+        <label for="tests">With Tests</label>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/popup.js"></script>
+</body>
+</html>
